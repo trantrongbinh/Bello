@@ -1,0 +1,1 @@
+﻿Tạo project: composer create-project laravel/laravel Bello "5.4.*" (Vào C:\xampp\htdocs để tạo)
