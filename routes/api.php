@@ -13,6 +13,14 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/', ['middleware' => 'guest', 'uses' => 'UserController@getLogin', 'as' => 'auth.login',]);
+Route::get('login', ['middleware' => 'guest', 'uses' => 'UserController@getLogin', 'as' => 'auth.login',]);
+Route::post('login', ['middleware' => 'guest', 'uses' => 'UserController@postLogin',]);
+//Route::get('password/reset/{token?}', ['middleware' => 'guest', 'uses' => 'UserController@reset',]);
+//Route::post('password/reset', ['middleware' => 'guest', 'uses' => 'UserController@resetPassword',]);
+Route::get('logout', function () {
+    Auth::logout();
+    return redirect('/');
 });
+Route::get('register', ['middleware' => 'guest', 'uses' => 'UserController@getRegister', 'as' => 'auth.register',]);
+Route::post('register', ['middleware' => 'guest', 'uses' => 'UserController@postRegister',]);
