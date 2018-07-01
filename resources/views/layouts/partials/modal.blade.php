@@ -5,33 +5,34 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title text-center">Create Board</h4>
             </div>
-            <div class="modal-body">
-                <form action="" method="POST" role="form" class="create-board-form">
-                    <div class="form-group" id="boardTitleCon">
-                        <label for="title" class="control-label">Title</label>
-                        <input type="text" class="form-control" id="boardTitle" name="boardName">
-                    </div>
-                    <div class="form-group">
-                        <h4>Team</h4>
-                        <p>
-                            Teams make sharing and working within a group even easier.
-                            It does't look like you are a member of any teams <a data-toggle="modal" href='#create-team'>Create a team</a>.
-                        </p>
-                    </div>
-                    <div class="form-group" id="boardPrivacyTypeCon">
-                        <p><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> This board will be Private.</p>
-                        <select name="boardPrivacyType" id="boardPrivacyType" class="form-control" required="required">
-                            <option value="private">Private</option>
-                            <option value="team">Team</option>
-                            <option value="public">Public</option>
-                        </select>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="save-board">Save changes</button>
-            </div>
+            <form action="postBoard" method="POST" role="form" class="create-board-form">
+                <input type="hidden" name="_token" value="{{csrf_token()}}">
+                <div class="modal-body">
+                        <div class="form-group" id="boardTitleCon">
+                            <label for="title" class="control-label">Title</label>
+                            <input type="text" class="form-control" id="boardTitle" name="boardTitle">
+                        </div>
+                        <div class="form-group">
+                            <h4>Team</h4>
+                            <p>
+                                Teams make sharing and working within a group even easier.
+                                It does't look like you are a member of any teams <a data-toggle="modal" href='#create-team'>Create a team</a>.
+                            </p>
+                        </div>
+                        <div class="form-group" id="boardPrivacyTypeCon">
+                            <p><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> This board will be Private.</p>
+                            <select name="boardPrivacyType" id="boardPrivacyType" class="form-control" required="required">
+                                <option value="private">Private</option>
+                                <option value="team">Team</option>
+                                <option value="public">Public</option>
+                            </select>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="save-board" onclick="saveBoard()">Save changes</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

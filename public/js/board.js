@@ -67,15 +67,15 @@ $(document).ready(function() {
         bindUI: function () { 
             var that = this;
 
-            $(".create-board-form").on("submit", function(e) {
-                e.preventDefault();
-                that.saveBoard();
-            });
+            // $(".create-board-form").on("submit", function(e) {
+            //     e.preventDefault();
+            //     that.saveBoard();
+            // });
 
-            this.params['saveBoardBtn'].on('click', function(event) {
-                event.preventDefault();
-                that.saveBoard();
-            });
+            // this.params['saveBoardBtn'].on('click', function(event) {
+            //     event.preventDefault();
+            //     that.saveBoard();
+            // });
 
             $('#saveListName').on('click', function(event) {
                 event.preventDefault();
@@ -791,53 +791,55 @@ $(document).ready(function() {
                 }
             });
         },
-        saveBoard: function () {
-            that = this;
-            $.ajax({
-                url: 'postBoard',
-                type: 'POST',
-                dataType: 'json',
-                data: {
-                    boardTitle: that.params['boardTitle'].val(),
-                    boardPrivacyType: that.params['boardPrivacyType'].val() 
-                },
-                success: function (data) {
-                    $(that.params['createBoardLink']).closest(".col-lg-3").before(
-                        '<div class="col-lg-3">'+
-                            '<div class="board-link" style="cursor: pointer;" data-boardid="'+data.id+'">'+
-                                '<div class="row">'+
-                                    '<div class="col-lg-10">'+
-                                        '<h2 style="margin-top: 5px;">'+
-                                            '<a href="http://localhost:8000/board?id='+data.id+'" class="board-main-link-con" style="font-size: 20px; color: #FFF;">'+
-                                                data.boardTitle +
-                                            '</a>'+
-                                        '</h2>'+
-                                    '</div>'+
-                                    '<div class="col-lg-2">'+
-                                        '<p style="margin-top: 12px;">'+
-                                            '<a href="#" style="font-size: 20px; color: #FFF;" id="make-fv-board"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></a>'+
-                                        '</p>'+
-                                    '</div>'+
-                                '</div>'+
-                            '</div>'+
-                        '</div>'
-                    );
-                    that.params['createNewBoardModal'].modal('hide') 
-                    that.params['boardTitle'].val('');
-                    that.params['boardTitleCon'].removeClass('has-error');
-                    that.params['boardTitleCon'].find('.help-block').remove();
-                    that.createActivity(data.id, 'board', 'created a board');
-                },
-                error: function (error) {
-                    var response = JSON.parse(error.responseText);
-                    that.params['boardTitleCon'].find('.help-block').remove();
-                    $.each(response, function(index, val) {
-                        that.params['boardTitleCon'].addClass('has-error');
-                        that.params['boardTitleCon'].append('<span class="help-block"><strong>'+ val +'</strong></span>');
-                    });
-                }
-            }); 
-        },
+        // saveBoard: function () {
+        //     var that = this;
+        //     $.ajax({
+        //         url: 'postBoard',
+        //         type: 'POST',
+        //         dataType: 'json',
+        //         data: {
+        //             boardTitle: that.params['boardTitle'].val(),
+        //             boardPrivacyType: that.params['boardPrivacyType'].val() 
+        //         },
+        //         success: function (data) {
+        //             console.log('thanh cong');
+        //             $(that.params['createBoardLink']).closest(".col-lg-3").before(
+        //                 '<div class="col-lg-3">'+
+        //                     '<div class="board-link" style="cursor: pointer;" data-boardid="'+data.id+'">'+
+        //                         '<div class="row">'+
+        //                             '<div class="col-lg-10">'+
+        //                                 '<h2 style="margin-top: 5px;">'+
+        //                                     '<a href="http://localhost:8000/board?id='+data.id+'" class="board-main-link-con" style="font-size: 20px; color: #FFF;">'+
+        //                                         data.boardTitle +
+        //                                     '</a>'+
+        //                                 '</h2>'+
+        //                             '</div>'+
+        //                             '<div class="col-lg-2">'+
+        //                                 '<p style="margin-top: 12px;">'+
+        //                                     '<a href="#" style="font-size: 20px; color: #FFF;" id="make-fv-board"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></a>'+
+        //                                 '</p>'+
+        //                             '</div>'+
+        //                         '</div>'+
+        //                     '</div>'+
+        //                 '</div>'
+        //             );
+        //             that.params['createNewBoardModal'].modal('hide') 
+        //             that.params['boardTitle'].val('');
+        //             that.params['boardTitleCon'].removeClass('has-error');
+        //             that.params['boardTitleCon'].find('.help-block').remove();
+        //             that.createActivity(data.id, 'board', 'created a board');
+        //         },
+        //         error: function (error) {
+        //             console.log('loi');
+        //             var response = JSON.parse(error.responseText);
+        //             that.params['boardTitleCon'].find('.help-block').remove();
+        //             $.each(response, function(index, val) {
+        //                 that.params['boardTitleCon'].addClass('has-error');
+        //                 that.params['boardTitleCon'].append('<span class="help-block"><strong>'+ val +'</strong></span>');
+        //             });
+        //         }
+        //     }); 
+        // },
         createActivity: function(activity_in_id, changed_in, activity_description) {
             $.ajax({
                 url: 'create-user-activity',

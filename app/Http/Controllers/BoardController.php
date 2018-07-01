@@ -14,6 +14,7 @@ use \App\Models\Board;
 use \App\Models\CardTag;
 use \App\Models\BoardList;
 use \App\Models\BoardCard;
+use Validator;
 
 class BoardController extends Controller
 {
@@ -40,11 +41,12 @@ class BoardController extends Controller
     public function postBoard(Request $request)
     {
         $this->validate($request, [
-            'boardTitle'        => 'required|unique:board,boardTitle',
+            'boardTitle'        => 'required',
             'boardPrivacyType'  => 'required',   
         ]);
         
-        return $this->board->createBoard($request, Auth::id());
+        $this->board->createBoard($request, Auth::id());
+        return redirect()->back();
     }
 
     /**
