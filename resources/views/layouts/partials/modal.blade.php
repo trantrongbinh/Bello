@@ -5,7 +5,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title text-center">Create Board</h4>
             </div>
-            <form action="postBoard" method="POST" role="form" class="create-board-form">
+            <form action="" method="POST" role="form">
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                 <div class="modal-body">
                         <div class="form-group" id="boardTitleCon">
@@ -30,7 +30,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" id="save-board" onclick="saveBoard()">Save changes</button>
+                    <button type="submit" class="btn btn-primary" id="save-board" >Save changes</button>
                 </div>
             </form>
         </div>

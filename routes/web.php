@@ -26,7 +26,7 @@ Route::get('dashboard', ['middleware' => 'auth', 'uses' => 'UserController@getDa
 Route::get('profile', ['middleware' => 'auth', 'uses' => 'UserController@getProfile', 'as' => 'user.profile',]);
 Route::get('activity', ['middleware' => 'auth', 'uses' => 'UserActivityController@getUserActivity', 'as' => 'user.activity',]);
 
-Route::post('postBoard',  'BoardController@postBoard');
+Route::post('postBoard', ['middleware' => 'auth', 'uses' => 'BoardController@postBoard',]);
 Route::post('update-board-favourite', ['middleware' => 'auth', 'uses' => 'BoardController@updateBoardFavourite',]);
 
 Route::post('create-user-activity', ['uses' => 'UserActivityController@createUserActivity']);

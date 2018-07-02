@@ -45,8 +45,7 @@ class BoardController extends Controller
             'boardPrivacyType'  => 'required',   
         ]);
         
-        $this->board->createBoard($request, Auth::id());
-        return redirect()->back();
+        return $this->board->createBoard($request, Auth::id());
     }
 
     /**
